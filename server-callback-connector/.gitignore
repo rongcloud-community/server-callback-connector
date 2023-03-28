@@ -1,0 +1,8 @@
+.classpath
+*.class
+.settings/
+.idea
+*.log
+logs
+target/
+/src/main/resources/application-sealtalk.yml

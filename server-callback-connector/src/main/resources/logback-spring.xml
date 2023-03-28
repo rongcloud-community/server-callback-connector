@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="10 seconds">
+
+    <contextName>logback</contextName>
+    <!-- 日志储存空间位置-->
+    <property name="log.path" value="log"/>
+
+    <appender name="FILE_ALL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/server-callback-connector.log</file>
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M\(%line\) - %msg%n</pattern>
+            <charset>UTF-8</charset> <!-- 设置字符集 -->
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/debug/server-callback-connector-%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <!--单个文件大小的上限-->
+            <maxFileSize>1GB</maxFileSize>
+            <!--保留15天-->
+            <maxHistory>15</maxHistory>
+            <!--日志占用磁盘最大的上限-->
+            <totalSizeCap>150GB</totalSizeCap>
+        </rollingPolicy>
+
+    </appender>
+
+    <appender name="FILE_ALL_ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <neverBlock>true</neverBlock>
+        <!-- 队列的最大容量,该值会影响性能.默认值为256 -->
+        <queueSize>1024</queueSize>
+        <!-- 队列剩余容量小于discardingThreshold,则会丢弃TRACT、DEBUG、INFO级别的日志;默认值-1,为queueSize的20%;0不丢失日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 队列满了，是否阻塞，默认为false；如果配置为true，则队列满了就丢弃日志； -->
+        <neverBlock>false</neverBlock>
+        <!-- 添加附加的appender,最多只能添加一个 -->
+        <appender-ref ref="FILE_ALL"/>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="FILE_ALL_ASYNC"/>
+    </root>
+
+</configuration>

@@ -1,0 +1,73 @@
+server:
+  port: 8000
+rc:
+  appkey: 需要改为融云的appkey
+  secret: 需要改为融云的appsecret
+  msg:
+#    支持的消息类型，目前只支持文本消息和引用消息
+    types: RC:TxtMsg,RC:ReferenceMsg
+#    合法消息的最小长度，内容长度小于这个值的消息将会被消息回调拦截
+    min_len: 0
+#    支持的聊天类型，目前只支持单聊
+    channels: PERSON
+  api:
+#    融云serverApi服务的域名，这里配置的是北京数据中心，如果是新加坡的客户需要修改一下域名
+    host: api-cn.ronghub.com
+#    调用融云serverApi服务使用的协议，支持https和http。推荐https
+    proto: https
+#    最多请求次数，失败后会重试。这里配置的是第一次请求+失败后重试的总次数
+    failed_num: 3
+  robot:
+#    聊天机器人的用户id
+    userid: rongcrouduserid
+
+openai:
+#  openai的api_key，注册后需要创建
+  api_key: sk-cxwzxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+#  文本消息使用的openai的模型类型，gptturbo 表示 gpt-3.5-turbo 类的模型，completions 表示 text-* 类的模型（text-davinci-003、text-curie-001等）
+  type: gptturbo
+#  type: completions
+  api:
+#    openai的api调用失败后的重试次数，openai主要的失败原因是超时
+    failed_num: 15
+  completions:
+#    completions使用的具体模型
+#    model: text-curie-001
+    model: text-davinci-003
+#    max_tokens、temperature 是 completions请求的相关参数，具体请参考 https://platform.openai.com/docs/api-reference/chat/create
+    max_tokens: 512
+    temperature: 0.5
+#    说明，服务中处理   completions 采用流式处理
+#    截取消息的最短长度
+    split_len: 36
+#    是否将completions返回的所有内容都放入到会话的上下文中，false则只将截取的第一条消息放入上下文
+    req_all: false
+  gptturbo:
+#    gptturbo使用的具体模型
+    model: gpt-3.5-turbo
+#    给模型的暗示，类似于设置人设，但只是暗示
+    system: 你是融云的客服
+#  图片生成相关配置
+  images:
+#    一次请求生成图片的数量
+    n: 1
+#    生成图片的大小
+#    size: 256x256
+    size: 512x512
+#    size: 1024x1024
+#    生成的是base64的图片还是url的图片。目前只支持url（融云IM的serverApi请求体有上限，base放不下，如果非要获取base64的图片，需要将其转存到自己的云存储上）
+#    response_format: b64_json
+    response_format: url
+#缓存相关配置
+cache:
+  context:
+#    会话上下文保存的时长（每次会话后都会延长到该配置）
+    minutes: 5
+#  单次会话上锁的时间长度，用于控制同一个用户的会话消息依次进行
+  lock_seconds: 120
+  completions:
+#    completions类型的会话保留长度
+    len: 2
+  gptturbo:
+#    gptturbo类型的会话保留长度，包括 system
+    len: 4
