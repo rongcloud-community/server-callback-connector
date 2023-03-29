@@ -1,6 +1,6 @@
 ## 简介
 
-​        server-callback-connector 是一个基于 Spring Boot 的融云 IM 聊天机器人服务。它能够接收来自融云的消息回调，并通过调用聊天机器人服务进行响应。该服务可以用于自动回复消息、智能客服等场景。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;server-callback-connector 是一个基于 Spring Boot 的融云 IM 聊天机器人服务。它能够接收来自融云的消息回调，并通过调用聊天机器人服务进行响应。该服务可以用于自动回复消息、智能客服等场景。
 
 ## 功能
 
@@ -23,7 +23,7 @@
 
 ### 克隆项目
 
-首先，您需要克隆 server-callback-connector 项目到您的本地机器上。您可以使用以下命令将项目克隆到您的本地：
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您需要克隆 server-callback-connector 项目到您的本地机器上。您可以使用以下命令将项目克隆到您的本地：
 
 ```bash
 git clone https://github.com/rongcloud-community/server-callback-connector.git
@@ -41,7 +41,7 @@ git clone https://github.com/rongcloud-community/server-callback-connector.git
 
 ### 打包并部署服务
 
-​        maven 项目的正常打包部署方式都可以，日志默认没有输出到控制台，如果需要输出到控制台需要修改 src/main/resources/logback-spring.xml 文件，将注释掉的控制台输出打开即可
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maven 项目的正常打包部署方式都可以，日志默认没有输出到控制台，如果需要输出到控制台需要修改 src/main/resources/logback-spring.xml 文件，将注释掉的控制台输出打开即可
 
 ### 配置融云消息回调
 
@@ -52,7 +52,7 @@ git clone https://github.com/rongcloud-community/server-callback-connector.git
 
 ## 授权
 
-​        此项目在 [MIT](https://opensource.org/licenses/MIT) 许可下发布，详情请参见 LICENSE.md 文件。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此项目在 [MIT](https://opensource.org/licenses/MIT) 许可下发布，详情请参见 LICENSE.md 文件。
 
 ## 贡献者
 
@@ -60,4 +60,4 @@ git clone https://github.com/rongcloud-community/server-callback-connector.git
 
 ## 致谢
 
-​        感谢您使用 server-callback-connector ！如果您对此项目有任何疑问或建议，请随时在 GitHub 上提交问题或请求。
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;感谢您使用 server-callback-connector ！如果您对此项目有任何疑问或建议，请随时在 GitHub 上提交问题或请求。
