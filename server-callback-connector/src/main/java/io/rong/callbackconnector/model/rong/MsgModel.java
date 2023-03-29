@@ -6,8 +6,8 @@ import lombok.Data;
 @Data
 public class MsgModel {
     private String content;
-    private boolean typingContentType;
-    private boolean referenceMsg;
+    private Boolean typingContentType;
+    private Boolean referenceMsg;
     private String localPath = "";
     private String imageUri;
     private String referMsgUserId;

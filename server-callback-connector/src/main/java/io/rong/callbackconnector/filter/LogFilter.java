@@ -22,12 +22,13 @@ public class LogFilter implements Filter {
 
 
     /**
-     * http请求头中的 Request-ID ，如果没有则使用 logId 拼接自己生成一个，请求融云 IM 的 serverApi 服务的时候再给带回去。方便出现问题后排查问题
+     * http请求头中的 Request-ID ，如果没有则使用 logId 拼接自己生成一个
      */
     public static final String HEADER_NAME = "X-Request-ID";
 
     /**
      * 生成 logId 的方法，便于打印同一个请求的处理日志。如果是集群部署并且统一收集日志的话，需要将其调整，防止多节点日志id冲突
+     * 该 logId 会在请求融云的 serverApi 时放入到请求头中，和融云的日志串联起来形成一个完整的业务链路标识，方便出现问题后排查问题
      */
     private static final char[] DIGITS64 = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_".toCharArray();
     private static String toIDString(long l) {

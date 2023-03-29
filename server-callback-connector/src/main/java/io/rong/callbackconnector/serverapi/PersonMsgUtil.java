@@ -24,10 +24,12 @@ public class PersonMsgUtil {
         String msgType;
         String url;
         FormBody.Builder builder = new FormBody.Builder();
-        if(msgModel.isTypingContentType()) {
+        if(null != msgModel.getTypingContentType() && msgModel.getTypingContentType()) {
+            msgModel.setTypingContentType(null);
             msgType = "RC:TypSts";
             url = rcConfig.getApiProto()+"://"+rcConfig.getApiHost()+"/statusmessage/private/publish.json";
-        }else if(msgModel.isReferenceMsg()) {
+        }else if(null != msgModel.getReferenceMsg() && msgModel.getReferenceMsg()) {
+            msgModel.setReferenceMsg(null);
             msgType = "RC:ReferenceMsg";
             url = rcConfig.getApiProto()+"://"+rcConfig.getApiHost()+"/message/private/publish.json";
             JSONObject referMsg = null;
