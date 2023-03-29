@@ -9,7 +9,7 @@
    - 随着用户需求的变化会逐步增加相应的功能
 - 目前只支持 融云IM 的单聊的 文本消息、引用消息
 - 业务流程图：
-<img src="https://user-images.githubusercontent.com/41032720/228496578-b3a93e99-6f75-4d89-8963-1eb3e21552fa.jpg" width="600px">
+<img src="https://user-images.githubusercontent.com/41032720/228500506-62b23e64-d112-421d-8124-8a78f58b3bd8.jpg" width="600px">
 
 ## 技术栈
 
