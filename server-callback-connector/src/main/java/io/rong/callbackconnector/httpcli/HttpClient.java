@@ -1,6 +1,6 @@
 package io.rong.callbackconnector.httpcli;
 
-import io.rong.callbackconnector.model.ContextModel;
+import io.rong.callbackconnector.model.openai.ContextModel;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import okhttp3.internal.Util;

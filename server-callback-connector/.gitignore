@@ -2,7 +2,7 @@
 *.class
 .settings/
 .idea
-*.log
-logs
+log/
 target/
+.DS_Store
 /src/main/resources/application-sealtalk.yml

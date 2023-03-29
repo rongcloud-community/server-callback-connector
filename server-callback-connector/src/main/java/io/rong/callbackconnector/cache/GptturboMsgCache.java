@@ -2,7 +2,7 @@ package io.rong.callbackconnector.cache;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.LoadingCache;
-import io.rong.callbackconnector.model.GptturboModel;
+import io.rong.callbackconnector.model.openai.GptturboModel;
 
 import java.util.LinkedList;
 import java.util.List;

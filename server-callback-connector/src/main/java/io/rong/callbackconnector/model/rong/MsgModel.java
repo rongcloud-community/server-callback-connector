@@ -1,4 +1,4 @@
-package io.rong.callbackconnector.model;
+package io.rong.callbackconnector.model.rong;
 
 import com.alibaba.fastjson2.JSONObject;
 import lombok.Data;

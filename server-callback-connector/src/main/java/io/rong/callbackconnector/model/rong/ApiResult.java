@@ -1,4 +1,4 @@
-package io.rong.callbackconnector.model;
+package io.rong.callbackconnector.model.rong;
 
 import lombok.Data;
 

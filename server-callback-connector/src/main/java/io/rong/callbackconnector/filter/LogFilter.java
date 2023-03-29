@@ -1,7 +1,7 @@
 package io.rong.callbackconnector.filter;
 
 import io.rong.callbackconnector.context.ContextHolder;
-import io.rong.callbackconnector.model.ContextModel;
+import io.rong.callbackconnector.model.openai.ContextModel;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.annotation.Order;
@@ -44,7 +44,7 @@ public class LogFilter implements Filter {
     }
     private String logId(){
         UUID u = UUID.randomUUID();
-        return toIDString(u.getMostSignificantBits()) + toIDString(u.getLeastSignificantBits()).substring(3, 14);
+        return toIDString(u.getMostSignificantBits()) + toIDString(u.getLeastSignificantBits());
     }
 
     @Override

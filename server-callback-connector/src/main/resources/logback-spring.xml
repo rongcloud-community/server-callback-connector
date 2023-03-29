@@ -37,7 +37,18 @@
         <appender-ref ref="FILE_ALL"/>
     </appender>
 
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M\(%line\) - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
     <root level="info">
+<!--        <appender-ref ref="CONSOLE"/>-->
         <appender-ref ref="FILE_ALL_ASYNC"/>
     </root>
 

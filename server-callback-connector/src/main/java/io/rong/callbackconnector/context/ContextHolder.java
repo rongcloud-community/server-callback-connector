@@ -1,7 +1,7 @@
 package io.rong.callbackconnector.context;
 
 
-import io.rong.callbackconnector.model.ContextModel;
+import io.rong.callbackconnector.model.openai.ContextModel;
 
 public class ContextHolder {
 
