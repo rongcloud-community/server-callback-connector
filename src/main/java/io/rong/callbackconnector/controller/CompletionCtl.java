@@ -116,8 +116,8 @@ public class CompletionCtl {
         }else if(msgModel.getContent().startsWith("/画 ")){
             ImagesUtil.asyncImages(rcConfig,openAiConfig,contextModel,rcRequest,msgModel.setContent(msgModel.getContent().substring(3)),null,0);
         } else if ("/画".equals(msgModel.getContent()) || "/image".equals(msgModel.getContent())) {
-            PersonMsgUtil.sendPersonMsg(contextModel,rcConfig,rcRequest,new MsgModel().setContent("请输入生成图片的内容……"),null,0);
             CurrentLimiting.unlock(rcRequest.getFromUserId());
+            PersonMsgUtil.sendPersonMsg(contextModel,rcConfig,rcRequest,new MsgModel().setContent("请输入生成图片的内容……"),null,0);
         } else {
             if("completions".equals(openAiConfig.getType())){
                 CompletionUtil.asyncCompletion(rcConfig,openAiConfig,contextModel,rcRequest,msgModel,null,0);

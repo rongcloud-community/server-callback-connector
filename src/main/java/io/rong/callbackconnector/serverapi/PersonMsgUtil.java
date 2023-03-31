@@ -71,7 +71,7 @@ public class PersonMsgUtil {
                 .header("RC-Nonce", String.valueOf(random))
                 .header("RC-Timestamp", String.valueOf(timestamp))
                 .header("RC-Signature", signature)
-                .header(LogFilter.HEADER_NAME, contextModel.getLogId())
+                .header("X-Request-ID", rcRequest.getMessageId())
                 .build();
 
 

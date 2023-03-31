@@ -60,8 +60,8 @@ public class ImagesUtil {
                     PersonMsgUtil.sendPersonMsg(contextModel,rcConfig,rcRequest,new MsgModel().setTypingContentType(true),null,0);
                     ImagesUtil.asyncImages(rcConfig,openAiConfig,contextModel,rcRequest,msgModel, finalRequest,failedCount+1);
                 }else {
-                    PersonMsgUtil.sendPersonMsg(contextModel, rcConfig, rcRequest, new MsgModel().setContent("请求 IMAGES 错误"), null, 0);
                     CurrentLimiting.unlock(rcRequest.getFromUserId());
+                    PersonMsgUtil.sendPersonMsg(contextModel, rcConfig, rcRequest, new MsgModel().setContent("请求 IMAGES 错误"), null, 0);
                 }
             }
 
@@ -80,8 +80,8 @@ public class ImagesUtil {
 
                 if (!response.isSuccessful() || StringUtils.isBlank(body)) {
                     log.error("log:{} OPENAI_IMAGES_ERR url:{} httpcode:{} body:{}", contextModel.getLogId(), call.request().url(), response.code(), body);
-                    PersonMsgUtil.sendPersonMsg(contextModel, rcConfig, rcRequest, new MsgModel().setContent("请求 IMAGES 失败"), null, 0);
                     CurrentLimiting.unlock(rcRequest.getFromUserId());
+                    PersonMsgUtil.sendPersonMsg(contextModel, rcConfig, rcRequest, new MsgModel().setContent("请求 IMAGES 失败"), null, 0);
                 } else {
                     readResult(contextModel, rcConfig, rcRequest, body);
                 }
@@ -125,11 +125,11 @@ public class ImagesUtil {
             log.error("log:{} OPENAI_IMAGES_RESULT ANALYSIS_FAIL:{}", contextModel.getLogId(),e.getMessage());
         }
 
+        CurrentLimiting.unlock(rcRequest.getFromUserId());
         if(!gptResultSend) {
             contextModel.setImage(false);
             PersonMsgUtil.sendPersonMsg(contextModel,rcConfig,rcRequest,new MsgModel().setContent("没有正确的解析 GPT 的响应"),null,0);
         }
-        CurrentLimiting.unlock(rcRequest.getFromUserId());
     }
 
 }

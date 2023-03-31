@@ -7,8 +7,6 @@ public class ContextModel {
 
     private String logId;
 
-    private String requestId;
-
     private boolean image;
 
 }
