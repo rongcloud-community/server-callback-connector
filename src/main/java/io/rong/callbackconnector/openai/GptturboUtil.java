@@ -68,8 +68,8 @@ public class GptturboUtil {
                     PersonMsgUtil.sendPersonMsg(contextModel,rcConfig,rcRequest,new MsgModel().setTypingContentType(true),null,0);
                     GptturboUtil.asyncGptturbo(rcConfig,openAiConfig,contextModel,rcRequest,msgModel, finalRequest,failedCount+1);
                 }else {
-                    PersonMsgUtil.sendPersonMsg(contextModel, rcConfig, rcRequest, new MsgModel().setContent("请求 GPTTURBO 错误"), null, 0);
                     CurrentLimiting.unlock(rcRequest.getFromUserId());
+                    PersonMsgUtil.sendPersonMsg(contextModel, rcConfig, rcRequest, new MsgModel().setContent("请求 GPTTURBO 错误"), null, 0);
                 }
             }
 
@@ -86,8 +86,8 @@ public class GptturboUtil {
                 }
                 if (!response.isSuccessful() || StringUtils.isBlank(body)) {
                     log.error("log:{} OPENAI_GPTTURBO_ERR url:{} httpcode:{} body:{}", contextModel.getLogId(),call.request().url(),response.code(),body);
-                    PersonMsgUtil.sendPersonMsg(contextModel,rcConfig,rcRequest,new MsgModel().setContent("请求 GPT 失败"),null,0);
                     CurrentLimiting.unlock(rcRequest.getFromUserId());
+                    PersonMsgUtil.sendPersonMsg(contextModel,rcConfig,rcRequest,new MsgModel().setContent("请求 GPT 失败"),null,0);
                 }else {
                     readResult(contextModel,rcConfig,openAiConfig,rcRequest,body);
                 }
@@ -134,10 +134,10 @@ public class GptturboUtil {
             log.error("log:{} OPENAI_GPTTURBO_RESULT ANALYSIS_FAIL:{}", contextModel.getLogId(),e.getMessage());
         }
 
+        CurrentLimiting.unlock(rcRequest.getFromUserId());
         if(!gptResultSend) {
             PersonMsgUtil.sendPersonMsg(contextModel,rcConfig,rcRequest,new MsgModel().setContent("没有正确的解析 GPT 的响应"),null,0);
         }
-        CurrentLimiting.unlock(rcRequest.getFromUserId());
     }
 
 

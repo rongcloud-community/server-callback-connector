@@ -82,8 +82,8 @@ public class CompletionUtil {
                     PersonMsgUtil.sendPersonMsg(contextModel,rcConfig,rcRequest,new MsgModel().setTypingContentType(true),null,0);
                     CompletionUtil.asyncCompletion(rcConfig,openAiConfig,contextModel,rcRequest,msgModel, finalRequest,failedCount+1);
                 }else {
-                    PersonMsgUtil.sendPersonMsg(contextModel,rcConfig,rcRequest,new MsgModel().setContent("请求 GPT 错误"),null,0);
                     CurrentLimiting.unlock(rcRequest.getFromUserId());
+                    PersonMsgUtil.sendPersonMsg(contextModel,rcConfig,rcRequest,new MsgModel().setContent("请求 GPT 错误"),null,0);
                 }
 
             }
@@ -102,8 +102,8 @@ public class CompletionUtil {
                         }
                     }
                     log.error("log:{} OPENAI_COMPLETION_ERR url:{} httpcode:{} body:{}", contextModel.getLogId(),call.request().url(),response.code(),body);
-                    PersonMsgUtil.sendPersonMsg(contextModel,rcConfig,rcRequest,new MsgModel().setContent("请求 GPT 失败"),null,0);
                     CurrentLimiting.unlock(rcRequest.getFromUserId());
+                    PersonMsgUtil.sendPersonMsg(contextModel,rcConfig,rcRequest,new MsgModel().setContent("请求 GPT 失败"),null,0);
                 }else {
                     readResult(contextModel,rcConfig,openAiConfig,rcRequest,response);
                 }
@@ -163,10 +163,11 @@ public class CompletionUtil {
                 CurrentLimiting.delay(rcRequest.getFromUserId());
             }
         }catch (Exception e){
-            log.error("log:{} OPENAI_COMPLETION_RESULT READ_FAIL:{}", contextModel.getLogId(),e.getMessage());
             CurrentLimiting.unlock(rcRequest.getFromUserId());
+            log.error("log:{} OPENAI_COMPLETION_RESULT READ_FAIL:{}", contextModel.getLogId(),e.getMessage());
         }
         String msg = stringBuilder.toString();
+        CurrentLimiting.unlock(rcRequest.getFromUserId());
         if(StringUtils.isNotBlank(msg)){
             if(!gptResultSend || openAiConfig.getReqAll()){
                 CompletionMsgCache.add(rcRequest.getFromUserId(),msg);
@@ -175,7 +176,6 @@ public class CompletionUtil {
         }else if(!gptResultSend) {
             PersonMsgUtil.sendPersonMsg(contextModel,rcConfig,rcRequest,new MsgModel().setContent("没有正确的解析 GPT 的响应"),null,0);
         }
-        CurrentLimiting.unlock(rcRequest.getFromUserId());
     }
 
 }
