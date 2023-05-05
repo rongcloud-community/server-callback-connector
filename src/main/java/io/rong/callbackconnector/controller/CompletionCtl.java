@@ -46,6 +46,11 @@ public class CompletionCtl {
             return RcResult.init("消息类型不支持，请检查");
         }
 
+        if(StringUtils.isBlank(rcRequest.getFromUserId()) || rcConfig.getRobotUserId().equals(rcRequest.getFromUserId())){
+            log.info("log:{} 不处理机器人发来的消息: {}", contextModel.getLogId(),rcRequest.getTargetId());
+            return RcResult.init("不处理机器人发来的消息");
+        }
+
         if(StringUtils.isBlank(rcRequest.getTargetId()) || !rcConfig.getRobotUserId().equals(rcRequest.getTargetId())){
             log.info("log:{} 聊天对象不是机器人: {}", contextModel.getLogId(),rcRequest.getTargetId());
             return RcResult.init("聊天对象不是机器人，请检查");

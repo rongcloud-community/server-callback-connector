@@ -36,7 +36,7 @@ public class OpenAiConfig {
     @Value("${openai.gptturbo.model}")
     private String gptturboModel;
 
-    @Value("${openai.gptturbo.system}")
+    @Value("${openai.gptturbo.system:#{null}}")
     private String gptturboSystem;
 
     @Value("${openai.images.n}")
